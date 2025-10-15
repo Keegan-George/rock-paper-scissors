@@ -9,6 +9,6 @@ After 5 rounds a winner is determined.
 
 ## Instructions
 1. Download/clone the index.html and static folders to your local.
-2. Launch the index file in your browser 
-3. Open your browser's console
-4. When prompted type in your choice
+2. Launch the index file in your browser .
+3. Type in your choice when prompted.
+4. Open your browser's console to see the results. 
