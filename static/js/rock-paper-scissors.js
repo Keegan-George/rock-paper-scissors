@@ -8,67 +8,86 @@ function getComputerChoice() {
     return CHOICE[index];
 }
 
-/**
- * Prompt the player for their choice and return it.
- */
-function getHumanChoice() {
-    let humanChoice = prompt("Make your choice (Type 'rock', 'paper', or 'scissors'.)").toLowerCase();
-
-    return humanChoice;
-}
 
 /**
- * Handles the win logic by comparing the choices of the computer and the player. 
- * Returns an integer (-1, 0, or 1) if the player has drawn, lost, or won accordingly against the computer.
+ * Compares the player and the computer choices and returns an integer indicating if the player has won
  */
 function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
-        return -1;
-    }
+    humanChoice = humanChoice.toLowerCase()
+    computerChoice = computerChoice.toLowerCase()
 
-    else if ((humanChoice === "rock" && computerChoice === "scissors") ||
+    let draw = (humanChoice === computerChoice);
+
+    let win = (humanChoice === "rock" && computerChoice === "scissors") ||
         (humanChoice === "paper" && computerChoice === "rock") ||
-        (humanChoice === "scissors" && computerChoice === "paper")) {
-        return 1;
-    }
-    else {
-        return 0;
-    }
+        (humanChoice === "scissors" && computerChoice === "paper");
+
+    if (draw) return -1;
+
+    else if (win) return 1;
+
+    else return 0;
 }
 
 /**
- * Runs the game for the specified number of rounds, tracking scores and displaying results to the screen. 
+ * Launches the game, tracks scores, and displays results to the screen. 
  */
 
 function playGame() {
-    const ROUNDS = 5;
+    // track scores
     let humanScore = 0;
     let computerScore = 0;
+    const TARGET_SCORE = 5;
 
-    for (let i = 0; i < ROUNDS; i++) {
-        let humanSelection = getHumanChoice();
-        let computerSelection = getComputerChoice();
+    // button event listener
+    const buttons = document.querySelectorAll("button");
 
-        result = playRound(humanSelection, computerSelection);
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            let humanChoice = button.textContent;
+            let computerChoice = getComputerChoice();
 
-        switch (result) {
-            case -1:
-                console.log("Draw.")
-                break;
+            console.log(`Human Choice: ${humanChoice}`);
+            console.log(`Computer Choice: ${computerChoice}`);
 
-            case 1:
-                console.log(`You win! ${humanSelection} beats ${computerSelection}.`)
-                humanScore++;
-                break;
+            console.log(playRound(humanChoice, computerChoice));
+        });
+    });
 
-            case 0:
-                console.log(`You lose! ${computerSelection} beats ${humanSelection}.`)
-                computerScore++;
-                break;
-        }
 
-        console.log(`Current score | player: ${humanScore}    computer: ${computerScore}`)
-    }
+
+    
+
+
+
+
+    // const ROUNDS = 5;
+
+    
+
+    // for (let i = 0; i < ROUNDS; i++) {
+    //     let computerSelection = getComputerChoice();
+
+    //     result = playRound(playerChoice, computerSelection);
+
+    //     switch (result) {
+    //         case -1:
+    //             console.log("Draw.")
+    //             break;
+
+    //         case 1:
+    //             console.log(`You win! ${playerChoice} beats ${computerSelection}.`)
+    //             humanScore++;
+    //             break;
+
+    //         case 0:
+    //             console.log(`You lose! ${computerSelection} beats ${playerChoice}.`)
+    //             computerScore++;
+    //             break;
+    //     }
+
+    //     console.log(`Current score | player: ${humanScore}    computer: ${computerScore}`)
+    // }
 
 }
 
