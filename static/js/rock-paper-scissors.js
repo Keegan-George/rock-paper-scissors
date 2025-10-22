@@ -1,39 +1,46 @@
 /**
- *  Returns a string representing one of three possible random computer choices: rock, paper, or scissors.
+ *  Returns a string representing one of three random computer choices: rock, paper, or scissors.
  */
 function getComputerChoice() {
-    const CHOICE = ["Rock", "Paper", "Scissors"];
-    let index = Math.floor(Math.random() * CHOICE.length);
+    const choice = ["Rock", "Paper", "Scissors"];
+    let index = Math.floor(Math.random() * choice.length);
 
-    return CHOICE[index];
+    return choice[index];
 }
 
 
 /**
- * Compares the player and the computer choices and returns an integer indicating the winner.
+ * Compares the player and the computer choices and returns an array containing:
+ *  - an integer to indicate the winner.
+ *  - an array with the corresponding human and computer choices. 
  */
-function playRound(humanChoice, computerChoice) {
-    humanChoice = humanChoice.toLowerCase()
+function playRound(playerChoice, computerChoice) {
+    playerChoice = playerChoice.toLowerCase()
     computerChoice = computerChoice.toLowerCase()
 
-    let draw = (humanChoice === computerChoice);
+    const draw = (playerChoice === computerChoice);
 
-    let win = (humanChoice === "rock" && computerChoice === "scissors") ||
-        (humanChoice === "paper" && computerChoice === "rock") ||
-        (humanChoice === "scissors" && computerChoice === "paper");
+    const win = (playerChoice === "rock" && computerChoice === "scissors") ||
+        (playerChoice === "paper" && computerChoice === "rock") ||
+        (playerChoice === "scissors" && computerChoice === "paper");
 
-    if (draw) return -1;
+    let winner;
+    let choices = [playerChoice, computerChoice];
 
-    else if (win) return 1;
+    if (draw) winner = -1;
 
-    else return 0;
+    else if (win) winner = 1;
+
+    else winner = 0;
+
+    return [winner, choices]
 }
 
 
 /**
- * Displays the player choices. 
+ * Displays the current player and computer choices. 
  */
-function displayChoice(playerChoice, computerChoice) {
+function displayChoices(playerChoice, computerChoice) {
     const playerChoiceDisplay = document.querySelector(".player-choice");
     const computerChoiceDisplay = document.querySelector(".computer-choice");
 
@@ -43,7 +50,7 @@ function displayChoice(playerChoice, computerChoice) {
 
 
 /**
- * Displays the current score.
+ * Displays the current scores.
  */
 function displayScore(playerScore, computerScore) {
     const playerScoreDisplay = document.querySelector(".player-score");
@@ -59,12 +66,27 @@ function displayScore(playerScore, computerScore) {
  */
 function displayRoundWinner(result) {
     const resultDisplay = document.querySelector(".round-result");
-    resultDisplay.textContent = result;
+
+    const winner = result[0];
+    const playerChoice = result[1][0];
+    const computerChoice = result[1][1];
+
+    if (winner === -1) {
+        resultLabel = "Draw";
+    }
+    if (winner === 1) {
+        resultLabel = `You win! ${playerChoice} beats ${computerChoice}`;
+    }
+    else if (winner === 0) {
+        resultLabel = `You Lose. ${computerChoice} beats ${playerChoice}`;
+    }
+
+    resultDisplay.textContent = resultLabel;
 }
 
 
 /**
- * Determines the game winner.
+ * Displays the winner of the game.
  */
 function displayGameWinner(humanScore, computerScore, target) {
     if (humanScore === target || computerScore === target) {
@@ -89,7 +111,7 @@ function playGame() {
     // track scores
     let humanScore = 0;
     let computerScore = 0;
-    const target = 3;
+    const target = 5;
 
     // button event listener
     const buttons = document.querySelectorAll("button");
@@ -101,20 +123,8 @@ function playGame() {
 
             result = playRound(humanChoice, computerChoice);
 
-            if (result === -1) {
-                resultLabel = "Draw";
-            }
-            if (result === 1) {
-                humanScore++;
-                resultLabel = `You win! ${humanChoice} beats ${computerChoice}`;
-            }
-            else if (result === 0) {
-                computerScore++;
-                resultLabel = `You Lose. ${computerChoice} beats ${humanChoice}`;
-            }
-
-            displayRoundWinner(resultLabel);
-            displayChoice(humanChoice, computerChoice);
+            displayRoundWinner(result);
+            displayChoices(humanChoice, computerChoice);
             displayScore(humanScore, computerScore);
             displayGameWinner(humanScore, computerScore, target);
         });
