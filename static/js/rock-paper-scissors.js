@@ -29,8 +29,9 @@ function playRound(humanChoice, computerChoice) {
     else return 0;
 }
 
+
 /**
- * Displays the player choices to the screen. 
+ * Displays the player choices. 
  */
 function displayChoice(playerChoice, computerChoice) {
     const playerChoiceDisplay = document.querySelector(".player-choice");
@@ -42,7 +43,7 @@ function displayChoice(playerChoice, computerChoice) {
 
 
 /**
- * Displays the current score to the screen. 
+ * Displays the current score.
  */
 function displayScore(playerScore, computerScore) {
     const playerScoreDisplay = document.querySelector(".player-score");
@@ -52,6 +53,7 @@ function displayScore(playerScore, computerScore) {
     computerScoreDisplay.textContent = computerScore;
 }
 
+
 /**
  * Displays the winner of the current round.
  */
@@ -59,6 +61,25 @@ function displayRoundWinner(result) {
     const resultDisplay = document.querySelector(".round-result");
     resultDisplay.textContent = result;
 }
+
+
+/**
+ * Determines the game winner.
+ */
+function displayGameWinner(humanScore, computerScore, target) {
+    if (humanScore === target || computerScore === target) {
+        const winner_display = document.querySelector(".game-winner");
+
+        if (humanScore > computerScore) {
+            winner_display.textContent = "You win the game!"
+        }
+
+        else {
+            winner_display.textContent = "Computer wins the game. Refresh the page to try again."
+        }
+    }
+}
+
 
 /**
  * Launches the game and tracks scores. 
@@ -68,7 +89,7 @@ function playGame() {
     // track scores
     let humanScore = 0;
     let computerScore = 0;
-    const goal = 5;
+    const target = 3;
 
     // button event listener
     const buttons = document.querySelectorAll("button");
@@ -95,11 +116,9 @@ function playGame() {
             displayRoundWinner(resultLabel);
             displayChoice(humanChoice, computerChoice);
             displayScore(humanScore, computerScore);
+            displayGameWinner(humanScore, computerScore, target);
         });
     });
-
-    // if (humanScore == goal):
-    // pass
 }
 
 playGame();
