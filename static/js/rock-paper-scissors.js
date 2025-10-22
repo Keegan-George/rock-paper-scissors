@@ -22,11 +22,11 @@ function playRound(humanChoice, computerChoice) {
         (humanChoice === "paper" && computerChoice === "rock") ||
         (humanChoice === "scissors" && computerChoice === "paper");
 
-    if (draw) return "Draw";
+    if (draw) return -1;
 
-    else if (win) return "You win!";
+    else if (win) return 1;
 
-    else return "You lose.";
+    else return 0;
 }
 
 /**
@@ -57,7 +57,6 @@ function updateScoreDisplay(playerScore, computerScore) {
  */
 function updateRoundResult(result) {
     const resultDisplay = document.querySelector(".round-result");
-
     resultDisplay.textContent = result;
 }
 
@@ -80,19 +79,27 @@ function playGame() {
             let computerChoice = getComputerChoice();
 
             result = playRound(humanChoice, computerChoice);
-
-            if (result === 0) {
-                computerScore++;
+            
+            if (result === -1){
+                resultLabel = "Draw";
             }
-            else if (result === 1) {
+            if (result === 1) {
                 humanScore++;
+                resultLabel = `You win! ${humanChoice} beats ${computerChoice}`;
+            }
+            else if (result === 0) {
+                computerScore++;
+                resultLabel = `You Lose. ${computerChoice} beats ${humanChoice}`;
             }
 
-            updateRoundResult(result);
+            updateRoundResult(resultLabel);
             updateChoiceDisplay(humanChoice, computerChoice);
             updateScoreDisplay(humanScore, computerScore);
         });
     });
+
+    // if (humanScore == goal):
+    // pass
 }
 
 playGame();
