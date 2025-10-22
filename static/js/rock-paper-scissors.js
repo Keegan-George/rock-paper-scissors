@@ -3,7 +3,7 @@
  */
 function getComputerChoice() {
     const choice = ["Rock", "Paper", "Scissors"];
-    let index = Math.floor(Math.random() * choice.length);
+    const index = Math.floor(Math.random() * choice.length);
 
     return choice[index];
 }
@@ -15,17 +15,16 @@ function getComputerChoice() {
  *  - an array with the corresponding human and computer choices. 
  */
 function playRound(playerChoice, computerChoice) {
-    playerChoice = playerChoice.toLowerCase()
-    computerChoice = computerChoice.toLowerCase()
+    const playerChoiceLower = playerChoice.toLowerCase()
+    const computerChoiceLower = computerChoice.toLowerCase()
 
-    const draw = (playerChoice === computerChoice);
+    const draw = (playerChoiceLower === computerChoiceLower);
 
-    const win = (playerChoice === "rock" && computerChoice === "scissors") ||
-        (playerChoice === "paper" && computerChoice === "rock") ||
-        (playerChoice === "scissors" && computerChoice === "paper");
+    const win = (playerChoiceLower === "rock" && computerChoiceLower === "scissors") ||
+        (playerChoiceLower === "paper" && computerChoiceLower === "rock") ||
+        (playerChoiceLower === "scissors" && computerChoiceLower === "paper");
 
-    let winner;
-    let choices = [playerChoice, computerChoice];
+    const choices = [playerChoice, computerChoice];
 
     if (draw) winner = -1;
 
