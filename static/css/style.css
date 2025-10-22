@@ -2,4 +2,68 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.score-title {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 34px;
+    font-weight: 700;
+
+}
+
+.scores {
+    display: flex;
+    justify-content: space-around;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 10px;
+}
+
+button {
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: #e0e0e0;
+}
+
+.choices {
+    display: flex;
+    justify-content: space-around;
+}
+
+.player-choice-region,
+.computer-choice-region {
+    text-align: center;
+    padding: 20px;
+    border: 2px solid black;
+    margin: 20px;
+    width: 250px;
+}
+
+.round-result {
+    text-align: center;
+    height: 20px;
+    margin: 20px 20px;
+}
+
+.game-winner{
+    text-align: center;
+    font-weight: 700;
+    font-size: 30px;
+    height: 40px;
 }
