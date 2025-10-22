@@ -90,11 +90,21 @@ function displayGameWinner(humanScore, computerScore, target) {
 
     if (humanScore === target) {
         winner_display.textContent = "You win the game!"
+        disableButtons()
     }
 
     else if (computerScore == target) {
         winner_display.textContent = "Computer wins the game. Refresh the page to try again."
+        disableButtons()
     }
+}
+
+/**
+ * Disable all game buttons.
+ */
+function disableButtons() {
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach(button => button.disabled = true);
 }
 
 
