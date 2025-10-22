@@ -10,7 +10,7 @@ function getComputerChoice() {
 
 
 /**
- * Compares the player and the computer choices and returns an integer indicating if the player has won.
+ * Compares the player and the computer choices and returns an integer indicating the winner.
  */
 function playRound(humanChoice, computerChoice) {
     humanChoice = humanChoice.toLowerCase()
@@ -30,9 +30,9 @@ function playRound(humanChoice, computerChoice) {
 }
 
 /**
- * Displays the updated player choices to the screen. 
+ * Displays the player choices to the screen. 
  */
-function updateChoiceDisplay(playerChoice, computerChoice) {
+function displayChoice(playerChoice, computerChoice) {
     const playerChoiceDisplay = document.querySelector(".player-choice");
     const computerChoiceDisplay = document.querySelector(".computer-choice");
 
@@ -42,9 +42,9 @@ function updateChoiceDisplay(playerChoice, computerChoice) {
 
 
 /**
- * Displays the updated scores to the screen. 
+ * Displays the current score to the screen. 
  */
-function updateScoreDisplay(playerScore, computerScore) {
+function displayScore(playerScore, computerScore) {
     const playerScoreDisplay = document.querySelector(".player-score");
     const computerScoreDisplay = document.querySelector(".computer-score");
 
@@ -53,9 +53,9 @@ function updateScoreDisplay(playerScore, computerScore) {
 }
 
 /**
- * Displays the updated result of this round to the screen.
+ * Displays the winner of the current round.
  */
-function updateRoundResult(result) {
+function displayRoundWinner(result) {
     const resultDisplay = document.querySelector(".round-result");
     resultDisplay.textContent = result;
 }
@@ -79,8 +79,8 @@ function playGame() {
             let computerChoice = getComputerChoice();
 
             result = playRound(humanChoice, computerChoice);
-            
-            if (result === -1){
+
+            if (result === -1) {
                 resultLabel = "Draw";
             }
             if (result === 1) {
@@ -92,9 +92,9 @@ function playGame() {
                 resultLabel = `You Lose. ${computerChoice} beats ${humanChoice}`;
             }
 
-            updateRoundResult(resultLabel);
-            updateChoiceDisplay(humanChoice, computerChoice);
-            updateScoreDisplay(humanScore, computerScore);
+            displayRoundWinner(resultLabel);
+            displayChoice(humanChoice, computerChoice);
+            displayScore(humanScore, computerScore);
         });
     });
 
