@@ -38,11 +38,19 @@ function playRound(playerChoice, computerChoice) {
  * Displays the current player and computer choices. 
  */
 function displayChoices(playerChoice, computerChoice) {
+    const imageFolderPath = "./static/img/"
+
     const playerChoiceDisplay = document.querySelector(".player-choice");
     const computerChoiceDisplay = document.querySelector(".computer-choice");
 
+    const playerChoiceImage = document.querySelector(".player-choice-image");
+    const computerChoiceImage = document.querySelector(".computer-choice-image");
+
     playerChoiceDisplay.textContent = playerChoice;
     computerChoiceDisplay.textContent = computerChoice;
+
+    playerChoiceImage.src= `${imageFolderPath}${playerChoice.toLowerCase()}.jpg`;
+    computerChoiceImage.src = `${imageFolderPath}${computerChoice.toLowerCase()}.jpg`;
 }
 
 
