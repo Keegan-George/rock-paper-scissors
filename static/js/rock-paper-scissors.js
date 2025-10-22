@@ -2,7 +2,7 @@
  *  Returns a string representing one of three possible random computer choices: rock, paper, or scissors.
  */
 function getComputerChoice() {
-    const CHOICE = ["rock", "paper", "scissors"];
+    const CHOICE = ["Rock", "Paper", "Scissors"];
     let index = Math.floor(Math.random() * CHOICE.length);
 
     return CHOICE[index];
