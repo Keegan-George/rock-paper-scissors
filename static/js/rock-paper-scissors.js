@@ -24,15 +24,13 @@ function playRound(playerChoice, computerChoice) {
         (playerChoiceLower === "paper" && computerChoiceLower === "rock") ||
         (playerChoiceLower === "scissors" && computerChoiceLower === "paper");
 
-    const choices = [playerChoice, computerChoice];
-
     if (draw) winner = -1;
 
     else if (win) winner = 1;
 
     else winner = 0;
 
-    return [winner, choices]
+    return [winner, [playerChoice, computerChoice]]
 }
 
 
