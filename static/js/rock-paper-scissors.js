@@ -74,10 +74,10 @@ function displayRoundWinner(result) {
     if (winner === -1) {
         resultLabel = "Draw";
     }
-    if (winner === 1) {
+    else if (winner === 1) {
         resultLabel = `You win! ${playerChoice} beats ${computerChoice}`;
     }
-    else if (winner === 0) {
+    else {
         resultLabel = `You Lose. ${computerChoice} beats ${playerChoice}`;
     }
 
@@ -122,6 +122,15 @@ function playGame() {
             let computerChoice = getComputerChoice();
 
             result = playRound(humanChoice, computerChoice);
+
+            winner = result[0];
+
+            if (winner === 1) {
+                humanScore++;
+            }
+            else if (winner === 0) {
+                computerScore++;
+            }
 
             displayRoundWinner(result);
             displayChoices(humanChoice, computerChoice);
