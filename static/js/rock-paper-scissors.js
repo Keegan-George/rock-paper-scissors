@@ -89,16 +89,14 @@ function displayRoundWinner(result) {
  * Displays the winner of the game.
  */
 function displayGameWinner(humanScore, computerScore, target) {
-    if (humanScore === target || computerScore === target) {
-        const winner_display = document.querySelector(".game-winner");
+    const winner_display = document.querySelector(".game-winner");
 
-        if (humanScore > computerScore) {
-            winner_display.textContent = "You win the game!"
-        }
+    if (humanScore === target) {
+        winner_display.textContent = "You win the game!"
+    }
 
-        else {
-            winner_display.textContent = "Computer wins the game. Refresh the page to try again."
-        }
+    else if (computerScore == target) {
+        winner_display.textContent = "Computer wins the game. Refresh the page to try again."
     }
 }
 
