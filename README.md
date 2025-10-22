@@ -12,3 +12,6 @@ After 5 rounds a winner is determined.
 2. Launch the index file in your browser .
 3. Type in your choice when prompted.
 4. Open your browser's console to see the results. 
+
+## Source
+Reference images were cropped from the following source: https://www.vecteezy.com/vector-art/54651416-cute-character-illustration-rock-paper-scissors-rochambeau-game-design-suitable-for-posters-and-webcreated
